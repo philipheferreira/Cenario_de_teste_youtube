@@ -7,39 +7,75 @@ let browser = new swd.Builder();
 let tab = browser.forBrowser("chrome").build();
 
   
-// Step 1 - Opening the geeksforgeeks sign in page
-let tabToOpen =
-    tab.get("https://youtube.com/");
-tabToOpen
+// Passo 1 - abrir a pagina do youtube
+let abrirPagina = tab.get("https://youtube.com/");
+abrirPagina
     .then(function () {
   
-        // Timeout to wait if connection is slow
-        let findTimeOutP =
+        // tempo de espera para esperar caso a coneccao esteja lenta
+        let tempoDeEspera =
             tab.manage().setTimeouts({
-                implicit: 10000, // 10 seconds
+                implicit: 10000, // 10 segundos
             });
-        return findTimeOutP;
+        return tempoDeEspera;
     })
     .then(function () {
   
-        // Step 2 - Finding the username input
-        let promiseUsernameBox =
+        // Passo 2 - procurar o input de busca no youtube sendo relacionado ao CSS do mesmo
+        let identificarBuscaYoutube =
             tab.findElement(swd.By.css("#search-input.ytd-searchbox-spt input"));
-        return promiseUsernameBox;
+        return identificarBuscaYoutube;
     })
-    .then(function (usernameBox) {
+    .then(function (inputBuscar) {
   
-        // Step 3 - Entering the username
-        let promiseFillUsername =
-            usernameBox.sendKeys("lofy hip hop");
-        return promiseFillUsername;
+        // Passo 3 - digitar a frase na parte de busca
+        let digitarInputBusca =
+            inputBuscar.sendKeys("lofy hip hop");
+        return digitarInputBusca;
     })
     .then(function () {
         console.log(
             ""
         );
   
-    //     // Step 4 - Finding the password input
+        // Passo 4 - Identificar botao de realizar pesquisa
+        let IdentificandoBotaoPesquisa = tab.findElement(
+            swd.By.css("#search-icon-legacy.ytd-searchbox")
+        );
+        return IdentificandoBotaoPesquisa;
+    })
+    .then(function (botaoPesquisa) {
+  
+        // Passo 5 - clicar no botao de pesquisa
+        let apertarBotaoBusca = botaoPesquisa.click();
+        return apertarBotaoBusca;
+    })
+
+    // correcoes para serem feitas
+    // .then(function (){
+    //     let promiseSignInBtnVideo = tab.findElement(
+    //         swd.By.css("#yt-core-image--fill-parent-height yt-core-image--fill-parent-width yt-core-image yt-core-image--content-mode-scale-aspect-fill yt-core-image--loaded")
+    //     );
+    //     return promiseSignInBtnVideo;
+    // })
+
+    // .then(function (signInBtnVideo) {
+  
+    //     // Passo 6 - clicar no botao de pesquisa
+    //     let promiseClickSignInVideo = signInBtnVideo.click();
+    //     return promiseClickSignInVideo;
+    // })
+
+    .then(function () {
+        console.log("Cenario de teste finalizado com sucesso");
+    })
+    .catch(function (err) {
+        console.log("Situacao de erro: ", err, " ocorreu!");
+    });
+
+
+
+        //     // Step 4 - Finding the password input
     //     let promisePasswordBox =
     //         tab.findElement(swd.By.css("#password"));
     //     return promisePasswordBox;
@@ -57,36 +93,3 @@ tabToOpen
     //         " 'login demonstration' for GEEKSFORGEEKS"
     //     );
   
-        // Step 6 - Finding the Sign In button
-        let promiseSignInBtn = tab.findElement(
-            swd.By.css("#search-icon-legacy.ytd-searchbox")
-        );
-        return promiseSignInBtn;
-    })
-    .then(function (signInBtn) {
-  
-        // Step 7 - clicar no botao de pesquisa
-        let promiseClickSignIn = signInBtn.click();
-        return promiseClickSignIn;
-    })
-
-    .then(function (){
-    let promiseSignInBtnVideo = tab.findElement(
-            swd.By.css("#yt-core-image--fill-parent-height yt-core-image--fill-parent-width yt-core-image yt-core-image--content-mode-scale-aspect-fill yt-core-image--loaded")
-        );
-        return promiseSignInBtnVideo;
-    })
-
-    .then(function (signInBtnVideo) {
-  
-        // Step 7 - clicar no botao de pesquisa
-        let promiseClickSignInVideo = signInBtnVideo.click();
-        return promiseClickSignInVideo;
-    })
-
-    .then(function () {
-        console.log("Successfully signed in GEEKSFORGEEKS!");
-    })
-    .catch(function (err) {
-        console.log("Error ", err, " occurred!");
-    });
