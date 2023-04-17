@@ -11,7 +11,6 @@ let tab = browser.forBrowser("chrome").build();
 let abrirPagina = tab.get("https://youtube.com/");
 abrirPagina
     .then(function () {
-  
         // tempo de espera para esperar caso a coneccao esteja lenta
         let tempoDeEspera =
             tab.manage().setTimeouts({
@@ -20,51 +19,29 @@ abrirPagina
         return tempoDeEspera;
     })
     .then(function () {
-  
         // Passo 2 - procurar o input de busca no youtube sendo relacionado ao CSS do mesmo
         let identificarBuscaYoutube =
-            tab.findElement(swd.By.css("#search-input.ytd-searchbox-spt input"));
+            tab.findElement(swd.By.css("#search-input.ytd-searchbox-spt input")).sendKeys("lofi hip hop");
         return identificarBuscaYoutube;
     })
-    .then(function (inputBuscar) {
-  
-        // Passo 3 - digitar a frase na parte de busca
-        let digitarInputBusca =
-            inputBuscar.sendKeys("lofy hip hop");
-        return digitarInputBusca;
-    })
     .then(function () {
-        console.log(
-            ""
-        );
-  
         // Passo 4 - Identificar botao de realizar pesquisa
-        let IdentificandoBotaoPesquisa = tab.findElement(
-            swd.By.css("#search-icon-legacy.ytd-searchbox")
-        );
+        let IdentificandoBotaoPesquisa = tab.findElement(swd.By.css("#search-icon-legacy.ytd-searchbox")).click();
         return IdentificandoBotaoPesquisa;
-    })
-    .then(function (botaoPesquisa) {
-  
-        // Passo 5 - clicar no botao de pesquisa
-        let apertarBotaoBusca = botaoPesquisa.click();
-        return apertarBotaoBusca;
     })
 
     // correcoes para serem feitas
-    // .then(function (){
-    //     let promiseSignInBtnVideo = tab.findElement(
-    //         swd.By.css("#yt-core-image--fill-parent-height yt-core-image--fill-parent-width yt-core-image yt-core-image--content-mode-scale-aspect-fill yt-core-image--loaded")
-    //     );
-    //     return promiseSignInBtnVideo;
-    // })
+    .then(function (){
+        let promiseSignInBtnVideo = tab.findElement(swd.By.css("lofi hip hop radio - beats to relax/study to"));
+        return promiseSignInBtnVideo;
+    })
 
-    // .then(function (signInBtnVideo) {
+    .then(function (linkVideo) {
   
-    //     // Passo 6 - clicar no botao de pesquisa
-    //     let promiseClickSignInVideo = signInBtnVideo.click();
-    //     return promiseClickSignInVideo;
-    // })
+        // Passo 6 - clicar no botao de pesquisa
+        let promiseClickSignInVideo = linkVideo.click();
+        return promiseClickSignInVideo;
+    })
 
     .then(function () {
         console.log("Cenario de teste finalizado com sucesso");
