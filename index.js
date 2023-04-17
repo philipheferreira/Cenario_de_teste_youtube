@@ -30,19 +30,15 @@ abrirPagina
         return IdentificandoBotaoPesquisa;
     })
 
-    // correcoes para serem feitas
+    // Selecionar primeiro video da pesquisa
     .then(function (){
-        let promiseSignInBtnVideo = tab.findElement(swd.By.css("lofi hip hop radio - beats to relax/study to"));
-        return promiseSignInBtnVideo;
+        let selecionarVideo = tab.findElement(swd.By.className("style-scope ytd-promoted-video-renderer")).click();
+        return selecionarVideo;
     })
 
-    .then(function (linkVideo) {
-  
-        // Passo 4 - clicar no botao de pesquisa
-        let promiseClickSignInVideo = linkVideo.click();
-        return promiseClickSignInVideo;
+    .then(function (){ 
+        let pausarVideo = tab.findElement(swd.By.className("ytp-play-button ytp-button")).click();
     })
-
     .then(function () {
         console.log("Cenario de teste finalizado com sucesso");
     })
