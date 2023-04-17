@@ -25,7 +25,7 @@ abrirPagina
         return identificarBuscaYoutube;
     })
     .then(function () {
-        // Passo 4 - Identificar botao de realizar pesquisa
+        // Passo 3 - Identificar botao de realizar pesquisa e clicar nele
         let IdentificandoBotaoPesquisa = tab.findElement(swd.By.css("#search-icon-legacy.ytd-searchbox")).click();
         return IdentificandoBotaoPesquisa;
     })
@@ -38,7 +38,7 @@ abrirPagina
 
     .then(function (linkVideo) {
   
-        // Passo 6 - clicar no botao de pesquisa
+        // Passo 4 - clicar no botao de pesquisa
         let promiseClickSignInVideo = linkVideo.click();
         return promiseClickSignInVideo;
     })
@@ -49,24 +49,3 @@ abrirPagina
     .catch(function (err) {
         console.log("Situacao de erro: ", err, " ocorreu!");
     });
-
-
-
-        //     // Step 4 - Finding the password input
-    //     let promisePasswordBox =
-    //         tab.findElement(swd.By.css("#password"));
-    //     return promisePasswordBox;
-    // })
-    // .then(function (passwordBox) {
-  
-    //     // Step 5 - Entering the password
-    //     let promiseFillPassword =
-    //         passwordBox.sendKeys("");
-    //     return promiseFillPassword;
-    // })
-    // .then(function () {
-    //     console.log(
-    //         "Password entered successfully in" +
-    //         " 'login demonstration' for GEEKSFORGEEKS"
-    //     );
-  
