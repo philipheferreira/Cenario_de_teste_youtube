@@ -38,6 +38,11 @@ abrirPagina
 
     .then(function (){ 
         let pausarVideo = tab.findElement(swd.By.className("ytp-play-button ytp-button")).click();
+        return pausarVideo;
+    })
+    .then(function (){ 
+        let passarVideo = tab.findElement(swd.By.className("html5-video-player ytp-transparent ytp-exp-bottom-control-flexbox ytp-exp-ppp-update ad-created ytp-fit-cover-video ytp-fine-scrubbing-exp ytp-hide-info-bar ytp-branding-shown ytp-autonav-endscreen-cancelled-state paused-mode ytp-small-mode")).click();
+        return passarVideo;
     })
     .then(function () {
         console.log("Cenario de teste finalizado com sucesso");
