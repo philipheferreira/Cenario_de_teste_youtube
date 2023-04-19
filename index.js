@@ -10,14 +10,17 @@ let tab = browser.forBrowser("chrome").build();
 // Passo 1 - abrir a pagina do youtube
 let abrirPagina = tab.get("https://youtube.com/");
 abrirPagina
+    // .then(function (){
+    //     let titulo = swd.getTitle();
+    //     return titulo
+    // })
     .then(function () {
         // tempo de espera para esperar caso a coneccao esteja lenta
-        let tempoDeEspera =
-            tab.manage().setTimeouts({
-                implicit: 10000, // 10 segundos
-            });
+
+        let tempoDeEspera = tab.manage().setTimeouts({ implicit: 10000, /* 10 segundos */});
         return tempoDeEspera;
     })
+
     .then(function () {
         // Passo 2 - procurar o input de busca no youtube sendo relacionado ao CSS do mesmo
         let identificarBuscaYoutube =
@@ -41,7 +44,7 @@ abrirPagina
         return pausarVideo;
     })
     .then(function (){ 
-        let passarVideo = tab.findElement(swd.By.className("html5-video-player ytp-transparent ytp-exp-bottom-control-flexbox ytp-exp-ppp-update ad-created ytp-fit-cover-video ytp-fine-scrubbing-exp ytp-hide-info-bar ytp-branding-shown ytp-autonav-endscreen-cancelled-state paused-mode ytp-small-mode")).click();
+        let passarVideo = tab.findElement(swd.By.className("ytp-next-button ytp-button")).click();
         return passarVideo;
     })
     .then(function () {
