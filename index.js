@@ -5,10 +5,10 @@ require("chromedriver");
 let swd = require("selenium-webdriver");
 let browser = new swd.Builder();
 let tab = browser.forBrowser("chrome").build();
-
+let {email, senha} = require("./usuario.json");
   
 // Passo 1 - abrir a pagina do youtube
-let abrirPagina = tab.get("https://youtube.com/");
+let abrirPagina = tab.get("https://youtube.com/"); 
 abrirPagina
     // .then(function (){
     //     let titulo = swd.getTitle();
@@ -46,6 +46,14 @@ abrirPagina
     .then(function (){ 
         let passarVideo = tab.findElement(swd.By.className("ytp-next-button ytp-button")).click();
         return passarVideo;
+    })
+    .then(function (){ 
+        let pausarVideo = tab.findElement(swd.By.className("ytp-play-button ytp-button")).click();
+        return pausarVideo;
+    })
+    .then(function (){ 
+        let pagUsuario = tab.findElement(swd.By.className("yt-spec-button-shape-next yt-spec-button-shape-next--outline yt-spec-button-shape-next--call-to-action yt-spec-button-shape-next--size-m yt-spec-button-shape-next--icon-leading ")).click();
+        return pagUsuario;
     })
     .then(function () {
         console.log("Cenario de teste finalizado com sucesso");
