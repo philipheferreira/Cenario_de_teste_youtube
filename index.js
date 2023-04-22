@@ -55,6 +55,14 @@ abrirPagina
         let pagUsuario = tab.findElement(swd.By.className("yt-spec-button-shape-next yt-spec-button-shape-next--outline yt-spec-button-shape-next--call-to-action yt-spec-button-shape-next--size-m yt-spec-button-shape-next--icon-leading ")).click();
         return pagUsuario;
     })
+    .then(function (){ 
+        let escreverEmail = tab.findElement(swd.By.className("whsOnd zHQkBf")).sendKeys(email);
+        return escreverEmail;
+    })
+    .then(function (){ 
+        let avancarParaSenha = tab.findElement(swd.By.className("VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-k8QpJ VfPpkd-LgbsSe-OWXEXe-dgl2Hf nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b")).click();
+        return avancarParaSenha;
+    })
     .then(function () {
         console.log("Cenario de teste finalizado com sucesso");
     })
